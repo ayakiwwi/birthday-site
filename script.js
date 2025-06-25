@@ -1,5 +1,3 @@
-const birthday = new Date("July 1, 2025 00:00:00").getTime();
-const countdownEl = document.getElementById("countdown");
 const giftBox = document.getElementById("gift-box");
 const modal = document.getElementById("surprise-modal");
 const content = document.getElementById("surprise-content");
@@ -19,23 +17,6 @@ const surprises = [
 
 let surpriseIndex = 0;
 
-function updateCountdown() {
-  const now = new Date().getTime();
-  const diff = birthday - now;
-
-  if (diff <= 0) {
-    countdownEl.innerHTML = "🎈 It's your birthday!";
-    giftBox.classList.remove("disabled");
-    giftBox.classList.add("active");
-    giftBox.onclick = showNextSurprise;
-  } else {
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    countdownEl.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
-  }
-}
-
 function showNextSurprise() {
   modal.classList.remove("hidden");
   content.innerText = surprises[surpriseIndex];
@@ -48,6 +29,6 @@ function showNextSurprise() {
   confetti();
 }
 
-
-
-setInterval(updateCountdown, 1000);
+giftBox.classList.remove("disabled");
+giftBox.classList.add("active");
+giftBox.onclick = showNextSurprise;
