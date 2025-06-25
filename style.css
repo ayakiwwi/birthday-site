@@ -1,0 +1,140 @@
+body {
+  font-family: sans-serif;
+  background: #ffe6f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+
+#countdown {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#gift-box {
+  font-size: 5rem;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+#gift-box.active {
+  opacity: 1;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+#surprise-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #fff0f5, #ffe6f0);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  max-width: 300px;
+  width: 80%;
+  z-index: 999;
+  animation: popIn 0.5s ease;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+
+#surprise-content {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #4a004a;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('✨.png') repeat;
+  animation: float 20s linear infinite;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% { background-position: 0% 100%; }
+  100% { background-position: 100% 0%; }
+}
+
+.animate {
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(0.3) rotate(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+  }
+}
+
+.float-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.float-item {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: floatUp 10s linear infinite;
+  opacity: 0.4;
+}
+
+/* Randomize positions and delays */
+.float-item:nth-child(1) { left: 10%; animation-delay: 0s; }
+.float-item:nth-child(2) { left: 40%; animation-delay: 2s; }
+.float-item:nth-child(3) { left: 70%; animation-delay: 4s; }
+.float-item:nth-child(4) { left: 85%; animation-delay: 6s; }
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.3);
+    opacity: 0;
+  }
+}
